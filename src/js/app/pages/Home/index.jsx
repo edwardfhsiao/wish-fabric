@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Textarea } from 'react-inputs-validation';
 import _ from 'lodash';
-// import ReactCrop, { makeAspectCrop } from 'react-image-crop';
-// import 'react-image-crop/dist/ReactCrop.css';
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
 import { post } from '../../../api/request-utils';
@@ -15,76 +13,11 @@ import STYLES from './styles.css';
 import Modal from '../../components/Modal/index.jsx';
 
 import { fabric } from 'fabric';
-// fabric.Text.prototype._wrapLine = function(ctx, text, lineIndex) {
-//   var lineWidth = 0,
-//     lines = [],
-//     line = '',
-//     words = text.split(' '),
-//     word = '',
-//     letter = '',
-//     offset = 0,
-//     infix = ' ',
-//     wordWidth = 0,
-//     infixWidth = 0,
-//     letterWidth = 0,
-//     largestWordWidth = 0;
 
-//   for (var i = 0; i < words.length; i++) {
-//     word = words[i];
-//     wordWidth = this._measureText(ctx, word, lineIndex, offset);
-//     lineWidth += infixWidth;
+import moment from 'moment';
 
-//     // Break Words if wordWidth is greater than textbox width
-//     if (this.breakWords && wordWidth > this.width) {
-//       line += infix;
-//       var wordLetters = word.split('');
-//       while (wordLetters.length) {
-//         letterWidth = this._getWidthOfChar(ctx, wordLetters[0], lineIndex, offset);
-//         if (lineWidth + letterWidth > this.width) {
-//           lines.push(line);
-//           line = '';
-//           lineWidth = 0;
-//         }
-//         line += wordLetters.shift();
-//         offset++;
-//         lineWidth += letterWidth;
-//       }
-//       word = '';
-//     } else {
-//       lineWidth += wordWidth;
-//     }
-
-//     if (lineWidth >= this.width && line !== '') {
-//       lines.push(line);
-//       line = '';
-//       lineWidth = wordWidth;
-//     }
-
-//     if (line !== '' || i === 1) {
-//       line += infix;
-//     }
-//     line += word;
-//     offset += word.length;
-//     infixWidth = this._measureText(ctx, infix, lineIndex, offset);
-//     offset++;
-
-//     // keep track of largest word
-//     if (wordWidth > largestWordWidth && !this.breakWords) {
-//       largestWordWidth = wordWidth;
-//     }
-//   }
-
-//   i && lines.push(line);
-
-//   if (largestWordWidth > this.dynamicMinWidth) {
-//     this.dynamicMinWidth = largestWordWidth;
-//   }
-
-//   return lines;
-// };
-
-const WIDTH = 320;
-const TEXT_WIDTH = 200;
+const WIDTH = window.innerWidth;
+const TEXT_WIDTH = WIDTH * 7 / 10;
 class Index extends Component {
   constructor(props) {
     super(props);
@@ -102,7 +35,7 @@ class Index extends Component {
   }
 
   componentDidUpdate({}, { text, src }) {
-    if (src != this.state.src && this.state.src == '') {
+    if (src != this.state.src) {
       this.canvas.getObjects().forEach(o => {
         if (o.type === 'image' && o.id && o.id == 'image') {
           this.canvas.remove(o);
@@ -155,7 +88,8 @@ class Index extends Component {
           src={this.state.src}
           style={{ height: 400, width: '100%' }}
           // Cropper.js options
-          aspectRatio={16 / 9}
+          // aspectRatio={16 / 9}
+          aspectRatio={1 / 1}
           guides={false}
           crop={this.crop}
         />
@@ -172,33 +106,76 @@ class Index extends Component {
     this.canvasWidth = this.canvas.width;
     let rect = new fabric.Rect({ width: this.canvasWidth, height: this.canvasHeight, fill: '#fff', hasControls: false, selectable: false, lockMovementX: true, lockMovementY: true });
     this.canvas.add(rect);
-    let title = new fabric.Text('2018的愿望', {
-      fontFamily: 'PingFang SC',
-      fill: '#4a4a4a',
-      fontSize: 14,
-      left: this.canvasWidth / 2 - 40,
-      top: 250,
-      selectable: false,
-      lockMovementX: true,
-      lockMovementY: true
-    });
     let text = new fabric.Text('', {
       breakWords: true,
       id: 'text',
       width: TEXT_WIDTH,
       fontFamily: 'PingFang SC',
       fill: '#4a4a4a',
-      textAlign: 'center',
+      textAlign: 'left',
       fontSize: 14,
-      left: 40,
-      top: 300,
+      left: 20,
+      top: WIDTH,
+      selectable: false,
+      lockMovementX: true,
+      lockMovementY: true
+    });
+    let { years, months, date } = moment().toObject();
+    let timeText = `${years}.${months}.${date} ${moment.weekdays()[moment().weekday()].substring(0, 3)}`;
+    // console.log(dateTime);
+    // let time = dateTime.getTime();
+    // let timeText = String(time);
+    let dateText = new fabric.Text(timeText, {
+      width: TEXT_WIDTH,
+      fontFamily: 'PingFang SC',
+      fill: '#4a4a4a',
+      textAlign: 'center',
+      fontSize: 12,
+      left: 20,
+      top: 15,
       selectable: false,
       lockMovementX: true,
       lockMovementY: true
     });
     // this.canvas.centerObject(text);
-    this.canvas.add(title);
+
+    // let imgObj = new Image();
+    // imgObj.src = require('../../../../image/qr.jpg');
+    // imgObj.src = this.qr.src;
+
+    let image = new fabric.Image(this.qr);
+    // image.set({
+    //   // // left: this.canvasWidth / 2, //coord.left,
+    //   // // top: this.canvasHeight / 2, //coord.top,
+    //   // // angle: 0,
+    //   // // padding: 10,
+    //   // // cornersize: 10,
+    //   // // scaleX: this.canvasWidth / 3,
+    //   // // width: this.canvasWidth - 100
+    //   // // scaleX: 20 / imgObj.width,
+    //   // // scaleY: 20 / imgObj.height
+    //   // hasControls: false,
+    //   // selectable: false,
+    //   // lockMovementX: true,
+    //   // lockMovementY: true,
+    //   // width: 30,
+    //   // height: 30
+    // });
+    this.canvas.add(dateText);
     this.canvas.add(text);
+    fabric.Image.fromURL(require('../../../../image/qr.jpg'), image => {
+      image.set({
+        left: this.canvasWidth - 60,
+        top: this.canvasHeight - 60,
+        scaleX: 0.1,
+        scaleY: 0.1,
+        hasControls: false,
+        selectable: false,
+        lockMovementX: true,
+        lockMovementY: true
+      });
+      this.canvas.add(image);
+    });
   }
 
   previewFile() {
@@ -215,38 +192,7 @@ class Index extends Component {
     // else {
     //   this.setState({ src: '' });
     // }
-  }
-
-  addTextBreaks(text, width, fontSize = 14) {
-    // text = text.trim();
-    //get existing lines before breaking:
-    let lines = text.toString().split('\n'),
-      newString = '';
-    //for each line, get width of all words
-    for (let line = 0; line < lines.length; line++) {
-      let words = lines[line].toString().split(' '),
-        canvas = document.createElement('canvas'),
-        context = canvas.getContext('2d'),
-        idx = 2;
-      context.font = fontSize + 'px Lato';
-      while (words.length > 0 && idx <= words.length) {
-        let str = words.slice(0, idx).join(' '),
-          w = context.measureText(str).width;
-        if (w > width) {
-          newString += words.slice(0, idx - 1).join(' ');
-          newString += '\n';
-          words = words.splice(idx - 1);
-          idx = 1;
-        } else {
-          idx += 1;
-        }
-      }
-      let txt = words.join(' ');
-      newString += txt;
-      //add user linebreaks
-      if (line < lines.length - 1) newString += '\n';
-    }
-    return newString;
+    this.file.value = '';
   }
 
   handleTextBlur() {
@@ -273,19 +219,29 @@ class Index extends Component {
   handleTextChange(text) {
     this.canvas.getObjects().forEach(o => {
       if (o.type === 'text' && o.id && o.id == 'text') {
-        if (o.width > WIDTH - 100) {
-          console.log(text);
-          if (text.indexOf('\n') === -1) {
-            //initial line
-            text = this.insertNewline(text);
-          } else {
-            if (text.length - text.lastIndexOf('\n') >= text.indexOf('\n')) {
-              text = this.insertNewline(text);
-            }
-          }
+        // if (o.width > TEXT_WIDTH) {
+        //   console.log(text);
+        //   if (text.indexOf('\n') === -1) {
+        //     //initial line
+        //     text = this.insertNewline(text);
+        //   } else {
+        //     if (text.length - text.lastIndexOf('\n') >= text.indexOf('\n')) {
+        //       text = this.insertNewline(text);
+        //     }
+        //   }
+        // }
+        // o.text = `${text}`;
+        let wrap = require('jp-wrap')(Math.round(TEXT_WIDTH / 6.2) - 2);
+        // o.text = `${wrap(
+        //   text,
+        //   { width: Math.round(TEXT_WIDTH / 6.2) }
+        // )}`;
+        if (text !== '') {
+          o.text = `${wrap(text)}`;
+        } else {
+          o.text = `${text}`;
         }
-        o.text = `${text}`;
-        o.left = this.canvasWidth / 2 - o.width / 2 - 7;
+        // o.left = this.canvasWidth / 2 - o.width / 2 - 7;
         o.width = TEXT_WIDTH;
       }
     });
@@ -323,8 +279,9 @@ class Index extends Component {
     imgObj.onload = () => {
       let image = new fabric.Image(imgObj);
       image.set({
-        // left: this.canvasWidth / 2, //coord.left,
-        // top: this.canvasHeight / 2, //coord.top,
+        id: 'image',
+        left: 20,
+        top: 30,
         // angle: 0,
         // padding: 10,
         // cornersize: 10,
@@ -332,8 +289,6 @@ class Index extends Component {
         // width: this.canvasWidth - 100
         // scaleX: 20 / imgObj.width,
         // scaleY: 20 / imgObj.height
-        id: 'image',
-        top: 0,
         hasControls: false,
         selectable: false,
         lockMovementX: true,
@@ -341,7 +296,8 @@ class Index extends Component {
         // width: this.canvasWidth
         // height: this.canvasHeight / imgObj.height
       });
-      image.scaleToWidth(this.canvasWidth);
+      image.scaleToWidth(this.canvasWidth - 40);
+      // image.centerH();
       // this.canvas.centerObject(image);
       this.canvas.add(image);
       this.canvas.renderAll();
@@ -359,15 +315,11 @@ class Index extends Component {
       }
       content = (
         <div>
-          <div style={{ width: '320px', margin: '0 auto' }}>{imagePreview}</div>
+          <div style={{ width: WIDTH, margin: '0 auto' }}>{imagePreview}</div>
           <div style={{ height: '10px', width: '100%' }} />
-          <div style={{ height: '15px', width: '100%' }} />
           <div
             style={{
-              // position: 'fixed',
-              bottom: '0',
-              left: '0',
-              right: '0'
+              padding: '15px'
             }}
             onClick={() => {
               // console.log(this.canvas);
@@ -380,7 +332,7 @@ class Index extends Component {
             <div
               className={`${APP_STYLES['button-group']}`}
               style={{
-                width: WIDTH,
+                width: '100%',
                 height: '20px',
                 margin: '0 auto 30px',
                 color: '#fff',
@@ -414,7 +366,6 @@ class Index extends Component {
 
     return (
       <div style={{ height: '100%', backgroundColor: '#f8f8f8', textAlign: 'center', fontSize: '12px' }}>
-        <div style={{ height: '15px', width: '100%' }} />
         <form onSubmit={this.submit} style={{ display: isReady ? 'none' : 'block' }}>
           <div>
             <div>
@@ -422,8 +373,7 @@ class Index extends Component {
                 <canvas id="canvas" width={WIDTH} height={WIDTH * 1.2} />
               </div>
             </div>
-            <div style={{ height: '15px', width: '100%' }} />
-            <div>
+            <div style={{ padding: '15px 15px 0' }}>
               <input ref={ref => (this.file = ref)} type="file" onChange={this.previewFile} accept="image/*" style={{ display: 'none' }} />
               <div style={{ width: WIDTH, margin: '0 auto' }}>
                 <div onClick={() => this.file.click()} style={{ padding: '10px', backgroundColor: '#4a4a4a', width: '50px', color: '#fff', textAlign: 'center', borderRadius: '4px' }}>
@@ -431,10 +381,9 @@ class Index extends Component {
                 </div>
               </div>
             </div>
-            <div style={{ height: '15px', width: '100%' }} />
-            <div>
+            <div style={{ padding: '15px' }}>
               <Textarea
-                customStyleWrapper={{ width: WIDTH, margin: '0 auto' }}
+                customStyleWrapper={{ width: '100%', margin: '0 auto' }}
                 value={text}
                 type={`text`}
                 placeholder="我的2018愿望是..."
@@ -449,9 +398,8 @@ class Index extends Component {
                 }}
               />
             </div>
-            <div>
+            <div style={{ padding: '15px', backgroundColor: '#f8f8f8' }}>
               <input type="submit" style={{ display: 'none' }} />
-              <div style={{ height: '30px', width: '100%' }} />
               <div
                 style={{
                   // position: 'fixed',
@@ -464,7 +412,7 @@ class Index extends Component {
                 <div
                   className={`${APP_STYLES['button-group']}`}
                   style={{
-                    width: WIDTH,
+                    width: '100%',
                     height: '20px',
                     margin: '0 auto 30px',
                     color: '#fff',

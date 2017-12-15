@@ -141,7 +141,8 @@ var config = (module.exports = {
     compress: true,
     disableHostCheck: true,
     // public: 'your-host:8080',
-    host: '192.168.1.200',
+    host: '192.168.3.100',
+    // host: '192.168.1.200',
     // host: '192.168.50.90',
     port: 1990
   },
