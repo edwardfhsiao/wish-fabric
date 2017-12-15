@@ -1,0 +1,38 @@
+/*mask*/
+
+.modal-bottom-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: #000;
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity 0.5s, z-index 0.5s;
+}
+
+.modal-bottom-mask.visible {
+  opacity: 0.5;
+  z-index: 1000;
+}
+
+/*content*/
+
+.modal-bottom-wrapper {
+  overflow: auto;
+  position: fixed;
+  top: 20%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1001;
+  background: #fff;
+  transform: translateY(100%);
+  transition: transform 0.5s;
+}
+
+.modal-bottom-wrapper.visible {
+  transform: translateY(0);
+}

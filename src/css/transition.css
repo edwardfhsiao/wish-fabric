@@ -1,0 +1,37 @@
+:root {}
+
+:global .forward-enter {
+  transform: translateX(100%);
+  transition: 0.3s transform ease-in-out;
+}
+
+:global .forward-enter-active {
+  transform: translateX(0);
+}
+
+:global .forward-leave {
+  transform: translateX(0);
+  transition: 0.3s transform ease-in-out;
+}
+
+:global .forward-leave-active {
+  transform: translateX(-100%);
+}
+
+:global .backward-enter {
+  transform: translateX(-100%);
+  transition: 0.3s transform ease-in-out;
+}
+
+:global .backward-enter-active {
+  transform: translateX(0);
+}
+
+:global .backward-leave {
+  transform: translateX(0);
+  transition: 0.3s transform ease-in-out;
+}
+
+:global .backward-leave-active {
+  transform: translateX(100%);
+}

@@ -1,0 +1,96 @@
+@font-face {
+  font-family: 'icomoon';
+  /*src: url("../font/icomoon.eot");*/
+  /*src: url("../font/icomoon.eot#iefix") format("embedded-opentype"), url("../font/icomoon.ttf") format("truetype"), url("../font/icomoon.woff") format("woff"), url("../font/icomoon.svg#icomoon") format("svg");*/
+  src: url('../font/icomoon.ttf') format('truetype'), url('../font/icomoon.woff') format('woff'), url('../font/icomoon.svg#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:global [class^="icon-"],
+:global [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:global .icon-token_forward:before {
+  content: "\e908";
+}
+
+:global .icon-token_switch:before {
+  content: "\e906";
+}
+
+:global .icon-token_switch_circle:before {
+  content: "\e907";
+}
+
+:global .icon-token_currency:before {
+  content: "\e905";
+}
+
+:global .icon-token_about_us:before {
+  content: "\e900";
+}
+
+:global .icon-token_add:before {
+  content: "\e901";
+}
+
+:global .icon-token_back:before {
+  content: "\e902";
+}
+
+:global .icon-token_choose:before {
+  content: "\e903";
+}
+
+:global .icon-token_close:before {
+  content: "\e904";
+}
+
+:global .icon-token_delete .path1:before {
+  content: "\e90d";
+  color: rgb(0, 0, 0);
+}
+
+:global .icon-token_delete .path2:before {
+  content: "\e90e";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+
+:global .icon-token_delete .path3:before {
+  content: "\e90f";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+
+:global .icon-token_edit:before {
+  content: "\e910";
+}
+
+:global .icon-token_gift:before {
+  content: "\e911";
+}
+
+:global .icon-token_menu:before {
+  content: "\e909";
+}
+
+:global .icon-token_wallet:before {
+  content: "\e913";
+}
+
+:global .icon-token_wechat:before {
+  content: "\e914";
+}

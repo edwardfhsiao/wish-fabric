@@ -1,0 +1,25 @@
+@import 'open-color/open-color.css';
+:root {
+  --oc-white: #ffffff;
+}
+
+:global .canvas-container {
+  margin: 0 auto;
+}
+
+:global .cropper-bg {
+  background: #fff;
+}
+
+:global .cropper-view-box {
+  outline-color: #fff;
+  outline: 1px solid #fff;
+}
+
+:global .cropper-line {
+  background-color: #fff;
+}
+
+:global .cropper-point {
+  background-color: #fff;
+}

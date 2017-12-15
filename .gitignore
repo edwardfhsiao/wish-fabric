@@ -1,0 +1,12 @@
+/node_modules
+/*.log
+/log/*.log
+/build
+/public/assets
+/public/uploads
+/dist/config
+/*-compiled.js
+/*-compiled.js.map
+*-compiled.js
+*-compiled.js.map
+index.js

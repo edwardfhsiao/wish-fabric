@@ -1,0 +1,22 @@
+.coin-item {
+  background: #fff;
+  height: 60px;
+  border-bottom: 1px solid #eeeeee;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.coin-item__logo-wrapper {
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 15px;
+  width: 30px;
+  height: 30px;
+}
+
+.coin-item__logo {
+  width: 100%;
+  height: 100%;
+}

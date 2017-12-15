@@ -1,0 +1,364 @@
+@import './icon.css';
+@import './transition.css';
+@import './reset.css';
+:root {
+  --oc-white: #ffffff;
+  --oc-gray-1: #ccc;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  color: #162937;
+  font-size: 14px;
+  font-weight: 200;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'sans-serif', 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei';
+}
+
+:global .root {
+  height: 100%;
+}
+
+.container {
+  padding: 15px;
+}
+
+.page {
+  width: 100%;
+  overflow: hidden;
+  min-height: 100%;
+}
+
+.gray-background {
+  background: #f8f8f8;
+}
+
+.blue-background {
+  background: #f2f8fa;
+}
+
+.main {
+  min-height: 100%;
+}
+
+.show-header {
+  margin-top: 50px;
+}
+
+.show-bottom-menu {
+  margin-bottom: 65px;
+}
+
+:global .my-loader__container {
+  position: relative;
+}
+
+:global .on-drag {
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08), 0 0 1px 0 rgba(0, 0, 0, 0.12);
+}
+
+.button-group {
+  background: #fff;
+  height: 80px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.button-group .button-group__button-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.button-group .icon {
+  font-size: 25px;
+}
+
+.button-group__button {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-space-around {
+  justify-content: space-around;
+}
+
+.flex-space-between {
+  justify-content: space-between;
+}
+
+.flex-center-v {
+  align-items: center;
+}
+
+.flex-start-h {
+  justify-content: flex-start;
+}
+
+.flex-end-h {
+  justify-content: flex-end;
+}
+
+.flex-vertical-center {
+  align-items: center;
+}
+
+.al-center {
+  text-align: center;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.position-center-v {
+  position: absolute;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  transform: translate(0, -50%)\9;
+}
+
+.position-center-h {
+  position: absolute;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  transform: translate(-50%, 0)\9;
+}
+
+.my-dropdown-menu {
+  background: #fff;
+  padding-left: 24px;
+  display: none;
+}
+
+.my-dropdown-menu.visible {
+  display: block;
+}
+
+.my-dropdown-menu__item-wrapper {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.my-dropdown-menu__item {
+  padding: 10px;
+  text-align: right;
+}
+
+.common-row {
+  display: flex;
+  background: #fff;
+  padding-left: 12px;
+}
+
+.common-row__container {
+  display: flex;
+  border-bottom: 1px solid #e5e5e5;
+  width: 100%;
+  padding: 15px;
+  align-items: center;
+}
+
+.common-row__column {
+  height: 100%;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.highlight-red {
+  color: #ff5a57;
+}
+
+.highlight-blue {
+  color: #0c99e3;
+}
+
+.background-blue {
+  background: #0c99e3;
+}
+
+.background-gray {
+  background: #c1c1c1;
+  color: #fff;
+}
+
+.gray-text {
+  color: #919191 !important;
+}
+
+.gray-text-2 {
+  color: #929aa0 !important;
+}
+
+.small-font-size {
+  font-size: 12px;
+}
+
+.border-devider-vertical {
+  width: 1px;
+  height: 50px;
+  background: #e5e5e5;
+}
+
+.border-devider-horizontal {
+  width: 100%;
+  height: 1px;
+  background: #e5e5e5;
+}
+
+.active-border-bottom-line {
+  height: 2px;
+  background: #ff5a57;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.my-button {
+  font-size: 14px;
+}
+
+.my-button__red {
+  color: #fff;
+  border-radius: 2px;
+  background: #ff5a57;
+  padding: 4%;
+  text-align: center;
+}
+
+.my-button__gray {
+  color: #fff;
+  background: #b0b0b0;
+  border-radius: 2px;
+  padding: 4%;
+  text-align: center;
+}
+
+.my-button__gray-text {
+  color: #b0b0b0;
+  background: #fff;
+  border-radius: 2px;
+  padding: 4%;
+  text-align: center;
+}
+
+.my-button__red-text {
+  color: #ff5a57;
+  border-radius: 2px;
+  background: #fff;
+  padding: 4%;
+  text-align: center;
+}
+
+.my-button__blue-text {
+  color: #0c99e3;
+  border-radius: 2px;
+  background: #fff;
+  padding: 4%;
+  text-align: center;
+}
+
+.my-button__red-text.gray-text {
+  color: #b0b0b0;
+}
+
+.hidden {
+  display: none;
+}
+
+.error-red {
+  color: #ff5a57;
+  font-size: 12px;
+}
+
+.position-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.empty-list {
+  padding: 15px;
+  text-align: center;
+  height: 100%;
+}
+
+:global #spin-loader .spinner {
+  position: fixed !important;
+}
+
+/* The switch - the box around the slider */
+
+:global .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+
+:global .switch input {
+  display: none;
+}
+
+/* The slider */
+
+:global .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+
+:global .slider:before {
+  position: absolute;
+  content: '';
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+:global input:checked + .slider {
+  background-color: #2196f3;
+}
+
+:global input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+:global input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+
+:global .slider.round {
+  border-radius: 34px;
+}
+
+:global .slider.round:before {
+  border-radius: 50%;
+}
